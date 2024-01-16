@@ -1,4 +1,7 @@
 {
   "workbench.commandPalette.experimental.enableNaturalLanguageSearch": true,
-  "workbench.settings.enableNaturalLanguageSearch": true
+  "workbench.settings.enableNaturalLanguageSearch": true,
+  "emmet.includeLanguages": {"javascript":"javascriptreact"},
+  "python.analysis.autoImportCompletions": true,
+  "editor.formatOnSave": true
 }

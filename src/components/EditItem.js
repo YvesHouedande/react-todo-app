@@ -2,11 +2,11 @@ import React from "react";
 import { useState } from "react";
 
 export default function EditItem({ todoData, edit }) {
-  const [value, setValue] = useState(todoData?.task);
+  const [value, setValue] = useState(todoData?.title);
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Correction de la faute d'orthographe
-
+      
     edit(todoData.id, value);
     // setValue("");
     

@@ -1,6 +1,7 @@
 import React from "react";
 import EditIcon from "../assets/edit.svg";
 import DeleteIcon from "../assets/delete-1487-svgrepo-com.svg";
+import { Link } from "react-router-dom";
 
 export default function TodoItem({ todoData, testCompleted, editToggler, deleteItem }) {
   return (
@@ -12,7 +13,7 @@ export default function TodoItem({ todoData, testCompleted, editToggler, deleteI
             testCompleted(todoData.id);
           }}
         >
-          {todoData.task}
+          {todoData.title}
         </p>
       </div>
       <div>
@@ -20,7 +21,7 @@ export default function TodoItem({ todoData, testCompleted, editToggler, deleteI
           deleteItem(todoData.id)
         }}/>
         <img className="icon" src={EditIcon} alt="" onClick={() => {editToggler(todoData.id)}} />
-        <button className="btn">Decrire</button>
+        <button className="btn"><Link to={`des/${todoData.id}`}>Decrire</Link></button>
       </div>
     </div>
   );
