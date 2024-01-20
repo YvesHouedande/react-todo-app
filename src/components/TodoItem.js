@@ -8,9 +8,9 @@ export default function TodoItem({ todoData, testCompleted, editToggler, deleteI
     <div className="item">
       <div>
         <p
-          className={todoData.completed ? "completed" : ""}
+          className={todoData?.completed ? "completed" : ""}
           onClick={() => {
-            testCompleted(todoData.id);
+            testCompleted(todoData?.id);
           }}
         >
           {todoData.title}
@@ -24,5 +24,6 @@ export default function TodoItem({ todoData, testCompleted, editToggler, deleteI
         <button className="btn"><Link to={`des/${todoData.id}`}>Decrire</Link></button>
       </div>
     </div>
+
   );
 }

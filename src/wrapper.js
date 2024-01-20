@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TodoForm from "./components/TodoForm";
 import TodoItem from "./components/TodoItem";
-import EditItem from "./components/EditItem";
+import EditTitle from "./components/EditTitle";
 import { Route, Routes } from "react-router-dom";
 import { TodoDesc } from "./components/TodoDesc";
 
@@ -19,7 +19,7 @@ export default function Wrapper() {
   const toggleComplete = (id) => {
     setTodos(
       todos.map((item, index) =>
-        index === id ? { ...item, completed: !item.completed } : item
+        index+1 === id ? { ...item, completed: !item.completed } : item
       )
     );
   };
@@ -37,14 +37,18 @@ export default function Wrapper() {
   };
 
   const edit = (id, value) => {
+    
     if (value)
       setTodos(
         todos.map((item, index) =>
           id === item.id
             ? { ...item, title: value, isEditing: !item.isEditing }
             : item
+       
         )
       );
+
+      
   };
 
   //Load my data
@@ -82,13 +86,13 @@ export default function Wrapper() {
                     deleteItem={deleteItem}
                   />
                 ) : (
-                  <EditItem key={index} todoData={item} edit={edit} />
+                  <EditTitle key={index} todoData={item} edit={edit} />
                 )
               )}
             </>
           }
         />
-        <Route path="des/:id" element={ <TodoDesc/> } />
+        <Route path="des/:id" element={ <TodoDesc edit={edit} /> } />
       </Routes>
     </div>
   );
