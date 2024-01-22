@@ -4,14 +4,35 @@ import DeleteIcon from "../assets/delete-1487-svgrepo-com.svg";
 import { Link } from "react-router-dom";
 
 export default function TodoItem({ todoData, testCompleted, editToggler, deleteItem }) {
+
+  const handleCompleted = async ()=>{
+    try {
+        const response = await fetch(`/api/todo/update/${todoData?.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ completed: !todoData?.completed}), 
+      });
+
+      if (response.ok) {
+        console.log("Mise à jour réussie !");
+       testCompleted(todoData?.id)
+      } else {
+        console.error("Échec de la mise à jour.");
+      }
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour :", error);
+    }
+
+  };
+
   return (
     <div className="item">
-      <div>
+      <div >
         <p
           className={todoData?.completed ? "completed" : ""}
-          onClick={() => {
-            testCompleted(todoData?.id);
-          }}
+          onClick={handleCompleted}
         >
           {todoData.title}
         </p>

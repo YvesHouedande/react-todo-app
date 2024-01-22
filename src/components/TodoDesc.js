@@ -4,7 +4,8 @@ import { ReactComponent as BackIcon } from "../assets/back.svg";
 import { Link } from "react-router-dom";
 import EditTitle from "./EditTitle";
 
-export const TodoDesc = ({edit, editToggler }) => {
+export const 
+TodoDesc = ({edit, editToggler }) => {
   const { id } = useParams();
   const [todo, setTodo] = useState(null)
   const navigate = useNavigate()
@@ -51,7 +52,7 @@ export const TodoDesc = ({edit, editToggler }) => {
     <>
     <div className="Header">
       <Link to="/"><BackIcon/></Link>
-      {todo && <EditTitle todoData={todo} edit={edit} editToggler={editToggler} />}
+      {todo && <EditTitle todoData={todo} edit={edit} />}
     </div>
 
     <textarea value={todo?.body} onChange={e=>{setTodo(todo=>({...todo, body:e.target.value}))}} name="" id="" cols="100" rows="10"></textarea>

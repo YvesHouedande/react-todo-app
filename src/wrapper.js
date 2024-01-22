@@ -36,6 +36,8 @@ export default function Wrapper() {
     setTodos(todos.filter((item) => (id === item.id ? null : item)));
   };
 
+
+  // This change is used inside API called
   const edit = (id, value) => {
     if (value)
       setTodos(
@@ -49,7 +51,7 @@ export default function Wrapper() {
 
       
   };
-  
+
 
   //Load my data
   const fetchTodos = async () => {
@@ -90,14 +92,13 @@ export default function Wrapper() {
                   key={index} 
                   todoData={item} 
                   edit={edit} 
-                  editToggler={toggleEdit}
                    />
                 )
               )}
             </>
           }
         />
-        <Route path="des/:id" element={ <TodoDesc edit={edit} editToggler={toggleEdit}  /> } />
+        <Route path="des/:id" element={ <TodoDesc edit={edit} editToggler={toggleEdit} /> } />
       </Routes>
     </div>
   );

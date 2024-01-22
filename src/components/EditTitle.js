@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function EditTitle({ todoData, editToggler }) {
+export default function EditTitle({ todoData, edit }) {
   const [editedTitle, setEditedTitle] = useState(todoData?.title);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Appeler la fonction edit avec l'ID et le nouveau titre édité
-    // edit(todoData.id, editedTitle);
     handleEdit();
-    editToggler(todoData.id)
-    // console.log(editToggler)
   };
 
+
+  // make api called
   const handleEdit = async ()=>{
     try {
         const response = await fetch(`/api/todo/update/${todoData?.id}`, {
@@ -26,10 +24,7 @@ export default function EditTitle({ todoData, editToggler }) {
 
       if (response.ok) {
         console.log("Mise à jour réussie !");
-        // edit(todoData.id, editedTitle);
-        const data = await response.json();
-        setEditedTitle(data.title)
-
+        edit(todoData.id, editedTitle);
       } else {
         console.error("Échec de la mise à jour.");
       }
@@ -39,7 +34,6 @@ export default function EditTitle({ todoData, editToggler }) {
 
     navigate("/")
   };
-
 
   return (
     <form className="todo-form" onSubmit={handleSubmit}>
