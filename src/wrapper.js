@@ -26,7 +26,7 @@ export default function Wrapper() {
 
   const toggleEdit = (id) => {
     setTodos(
-      todos.map((item) =>
+      todos?.map((item) =>
         id === item.id ? { ...item, isEditing: !item.isEditing } : item
       )
     );
@@ -37,7 +37,6 @@ export default function Wrapper() {
   };
 
   const edit = (id, value) => {
-    
     if (value)
       setTodos(
         todos.map((item, index) =>
@@ -50,6 +49,7 @@ export default function Wrapper() {
 
       
   };
+  
 
   //Load my data
   const fetchTodos = async () => {
@@ -57,7 +57,7 @@ export default function Wrapper() {
       const response = await fetch("/api/todos/");
       const data = await response.json();
 
-      setTodos(data.map((item, index) => ({ ...item, isEditing: false })));
+      setTodos(data.map((item, index) => ({ ...item, isEditing: false,  })));
     } catch (error) {
       console.error("Erreur lors du chargement des tâches", error);
     }
@@ -86,13 +86,18 @@ export default function Wrapper() {
                     deleteItem={deleteItem}
                   />
                 ) : (
-                  <EditTitle key={index} todoData={item} edit={edit} />
+                  <EditTitle 
+                  key={index} 
+                  todoData={item} 
+                  edit={edit} 
+                  editToggler={toggleEdit}
+                   />
                 )
               )}
             </>
           }
         />
-        <Route path="des/:id" element={ <TodoDesc edit={edit} /> } />
+        <Route path="des/:id" element={ <TodoDesc edit={edit} editToggler={toggleEdit}  /> } />
       </Routes>
     </div>
   );

@@ -21,7 +21,7 @@ export default function TodoItem({ todoData, testCompleted, editToggler, deleteI
           deleteItem(todoData.id)
         }}/>
         <img className="icon" src={EditIcon} alt="" onClick={() => {editToggler(todoData.id)}} />
-        <button className="btn"><Link to={`des/${todoData.id}`}>Decrire</Link></button>
+        <button className="btn" onClick={() => {editToggler(todoData.id)}} ><Link to={`des/${todoData.id}`}>Decrire</Link></button>
       </div>
     </div>
 
