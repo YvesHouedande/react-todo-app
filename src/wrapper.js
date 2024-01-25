@@ -19,7 +19,7 @@ export default function Wrapper() {
   const toggleComplete = (id) => {
     setTodos(
       todos.map((item, index) =>
-        index+1 === id ? { ...item, completed: !item.completed } : item
+        id === item.id ? { ...item, completed: !item.completed } : item
       )
     );
   };
@@ -59,7 +59,7 @@ export default function Wrapper() {
       const response = await fetch("/api/todos/");
       const data = await response.json();
 
-      setTodos(data.map((item, index) => ({ ...item, isEditing: false,  })));
+      setTodos(data.map((item, index) => ({ ...item, isEditing: false,  id:item.id})));
     } catch (error) {
       console.error("Erreur lors du chargement des tâches", error);
     }

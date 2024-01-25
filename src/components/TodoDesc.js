@@ -51,7 +51,7 @@ TodoDesc = ({edit, editToggler }) => {
   return (
     <>
     <div className="Header">
-      <Link to="/"><BackIcon/></Link>
+      <Link to="/" onClick={()=>{editToggler(todo.id)}}><BackIcon/></Link>
       {todo && <EditTitle todoData={todo} edit={edit} />}
     </div>
 

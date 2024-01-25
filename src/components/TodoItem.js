@@ -27,6 +27,25 @@ export default function TodoItem({ todoData, testCompleted, editToggler, deleteI
 
   };
 
+  const handle_deletion = async ()=>{
+    try {
+     const response = await fetch(`api/todo/delete/${todoData?.id}`,{
+      method:"DELETE",
+      headers:{
+        "content-type":"application/json"
+      },
+      body:JSON.stringify({id:todoData?.id})
+    })
+
+    if (response.ok) {
+      deleteItem(todoData?.id)
+      
+    }
+    } catch (error) {
+      alert("Une erreur s'est produite")
+    }
+  }
+
   return (
     <div className="item">
       <div >
@@ -39,7 +58,7 @@ export default function TodoItem({ todoData, testCompleted, editToggler, deleteI
       </div>
       <div>
         <img src={DeleteIcon} className="icon" alt="" onClick={() => {
-          deleteItem(todoData.id)
+          handle_deletion()
         }}/>
         <img className="icon" src={EditIcon} alt="" onClick={() => {editToggler(todoData.id)}} />
         <button className="btn" onClick={() => {editToggler(todoData.id)}} ><Link to={`des/${todoData.id}`}>Decrire</Link></button>
